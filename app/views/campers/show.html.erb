@@ -1,0 +1,17 @@
+<h1><%= @camper.name %></h1>
+Age: <%= @camper.age%><br>
+<div>
+Activities:
+<table>
+  <tr><th>Activity</th><th>Time</th><th></th></tr>
+  <% @camper.signups.order(:hour).each do |signup| %>
+    <tr>
+      <td><%= signup.activity.name %></td>
+      <td><%= signup.hour %>h</td>
+      <td><%= link_to "Delete?", signup_path(signup.id), method: :delete %> </td></tr>
+  <% end %>
+</table>
+</div>
+<hr>
+See <%= link_to "all campers", campers_path %><br>
+<%= link_to "Sign up for activity", new_signup_path %>
